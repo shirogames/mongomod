@@ -30,6 +30,13 @@ class Collection
 		return new Cursor(protocol, fullname);
 	}
 
+	public function aggregate( pipeline : Array<Dynamic> ) : Array<Dynamic> {
+		protocol.query(db.name+".$cmd", {aggregate:name, pipeline:pipeline}, null, 0, 1);
+		var ret : Dynamic = protocol.getOne();
+		if( ret.ok != 1 ) throw ret;
+		return ret.result;
+	}
+
 	public inline function findOne(?query:Dynamic, ?returnFields:Dynamic):Dynamic
 	{
 		protocol.query(fullname, query, returnFields, 0, -1);

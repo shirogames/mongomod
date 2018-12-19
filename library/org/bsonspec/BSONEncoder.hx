@@ -83,6 +83,14 @@ class BSONEncoder
 			writeHeader(out, key, 0x07);
 			out.writeBytes(value.bytes, 0, 12);
 		}
+		else if (Std.is(value, haxe.io.Bytes))
+		{
+			var value : haxe.io.Bytes = value;
+			writeHeader(out, key, 0x05);
+			out.writeInt32(value.length);
+			out.writeByte(0);
+			out.write(value);
+		}
 		else if (Std.is(value, BSONDocument)) // document/object
 		{
 			writeHeader(out, key, 0x03);
@@ -180,7 +188,7 @@ class BSONEncoder
 	}
 
 	private var bytes:Bytes;
-	
+
 	function writeUInt32(out:BytesOutput, n:Float)
 	{
 		var a = Std.int(n / 65536.0);
@@ -188,7 +196,7 @@ class BSONEncoder
 		out.writeUInt16(b);
 		out.writeUInt16(a);
 	}
-	
+
 	function writeUInt64(out:BytesOutput, n:Float)
 	{
 		var a = Math.ffloor(n / 4294967296.0);
