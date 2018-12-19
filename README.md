@@ -1,7 +1,7 @@
 MongoDB driver for Haxe
 ====================================
 
-Pure-haxe driver for MongoDB for sys targets. Based on https://github.com/MattTuttle/mongo-haxe-driver project.
+Pure-haxe driver for MongoDB for sys targets. Based on https://github.com/MattTuttle/mongo-haxe-driver project, then forked from https://bitbucket.org/yar3333/haxe-mongomod
 
 Improvements (compared to base project):
 
