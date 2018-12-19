@@ -1,6 +1,6 @@
 package org.mongodb;
 
-class Mongo implements Dynamic<Database>
+class Mongo
 {
 	var protocol : Protocol;
 	

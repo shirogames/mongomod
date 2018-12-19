@@ -49,13 +49,13 @@ class Cursor
 		checkResponse();
 	}
 
-	private inline function checkResponse():Bool
+	private function checkResponse():Bool
 	{
 		cursorId = protocol.response(documents);
 		if (documents.length == 0)
 		{
 			finished = true;
-			if (cursorId != cast null)
+			if (cursorId != 0)
 			{
 				protocol.killCursors([cursorId]);
 			}

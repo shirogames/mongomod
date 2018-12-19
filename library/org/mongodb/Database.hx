@@ -7,7 +7,7 @@ package org.mongodb;
 #end
 import org.bsonspec.BSONDocument;
 
-class Database implements Dynamic<Collection>
+class Database
 {
 	var protocol : Protocol;
 	var cmd : Collection;
