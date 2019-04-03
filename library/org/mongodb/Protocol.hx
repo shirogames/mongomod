@@ -41,6 +41,7 @@ class Protocol
 
 	public static var CONNECTION_TIMEOUT = 5.0;
 	public static var DEFAULT_TIMEOUT = 5.0;
+	public static var GENERATE_IDS = false;
 
 	private var socket : Socket;
 	private var requestId = 0;
@@ -119,7 +120,7 @@ class Protocol
 		// check for _id field, generate if it doesn't exist
 		function writeField(field)
 		{
-			if (!Reflect.hasField(field, '_id'))
+			if (GENERATE_IDS && !Reflect.hasField(field, '_id'))
 			{
 				if (!Std.is(field, BSONDocument))
 				{

@@ -7,23 +7,24 @@ import haxe.io.BytesOutput;
 class ObjectID
 {
 	static var pid = Std.random(65536);
-	
+
 	static var sequence = 0;
-	
+
 #if (neko || php || cpp)
 	static var machine:Bytes = Bytes.ofString(sys.net.Host.localhost());
 #else
 	static var machine:Bytes = Bytes.ofString("flash");
 #end
-	
+
 	public var bytes(default, null):Bytes;
-	
+
 	public function new(?input:Input)
 	{
 		if (input == null)
 		{
 			// generate a new id
 			var out:BytesOutput = new BytesOutput();
+			out.bigEndian = true;
 #if haxe3
 			out.writeInt32(Math.floor(Date.now().getTime() / 1000)); // seconds
 #else
@@ -45,7 +46,7 @@ class ObjectID
 	{
 		return 'ObjectID("' + bytes.toHex() + '")';
 	}
-	
+
 	public static function fromString(s:String) : ObjectID
 	{
 		var r = new ObjectID();
