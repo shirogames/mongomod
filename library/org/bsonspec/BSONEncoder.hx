@@ -60,7 +60,7 @@ class BSONEncoder
 			writeHeader(out, key, 0x01);
 			out.writeDouble(value);
 		}
-		else if (Int64.is(value))
+		else if (Int64.isInt64(value))
 		{
 			writeHeader(out, key, 0x12);
 			out.writeInt32(value.high);
